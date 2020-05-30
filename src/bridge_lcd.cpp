@@ -29,7 +29,7 @@ bridge_lcd::bridge_lcd() {
 void bridge_lcd::display_logo() {
     // XBM files are C source bitmap arrays, and can be created in GIMP (and then read/imported using text editors)
     clear();
-    oled_display->drawXBitmap((128-fermentrack_logo_width)/2, (64-fermentrack_logo_height)/2, fermentrack_logo_bits, fermentrack_logo_width, fermentrack_logo_height, TFT_WHITE);
+    oled_display->drawXBitmap((oled_display->width()-fermentrack_logo_width)/2, (oled_display->height()-fermentrack_logo_height)/2, fermentrack_logo_bits, fermentrack_logo_width, fermentrack_logo_height, TFT_WHITE);
     display();
 }
 
@@ -178,13 +178,13 @@ void bridge_lcd::display() {
 void bridge_lcd::print_line(String left_text, String right_text, uint8_t line) {
     int16_t starting_pixel_row = 0;
 
-    starting_pixel_row = (SSD_LINE_CLEARANCE + SSD_FONT_HEIGHT) * (line-1) + SSD_LINE_CLEARANCE;
+    starting_pixel_row = (4 + 25) * (line-1) + 4;
 
     // The coordinates define the left starting point of the text
     //oled_display->setTextAlignment(TEXT_ALIGN_LEFT);
     oled_display->drawString(left_text, 0, starting_pixel_row, 4);
 
     //oled_display->setTextAlignment(TEXT_ALIGN_RIGHT);
-    oled_display->drawString(right_text, 0, starting_pixel_row, 4);
+    oled_display->drawString(right_text, oled_display->width()/2, starting_pixel_row, 4);
 }
 
