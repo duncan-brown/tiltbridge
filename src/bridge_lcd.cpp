@@ -120,8 +120,7 @@ void bridge_lcd::display_wifi_connect_screen(String ap_name, String ap_pass) {
 void bridge_lcd::display_wifi_success_screen(String mdns_url, String ip_address_url) {
     // This screen is displayed at startup when the TiltBridge is configured to connect to WiFi
     clear();
-    print_line("Access your TiltBridge at:", "", 1);
-    print_line(mdns_url, "", 2);
+    print_line("IP Address is:", "", 1);
     print_line(ip_address_url, "", 3);
     display();
 }
