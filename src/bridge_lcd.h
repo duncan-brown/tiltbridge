@@ -9,13 +9,8 @@
 #include <Arduino.h>
 
 
-#ifdef LCD_SSD1306
-#include <SSD1306.h>
-#define SSD1306_FONT_HEIGHT     10
-#define SSD_LINE_CLEARANCE      2
-#define SSD1306_FONT            ArialMT_Plain_10
-#endif
-
+#include <TFT_eSPI.h> 
+#include <SPI.h>
 
 #define TILTS_PER_PAGE          5  // The actual number is one fewer than this - the first row is used for headers
 
@@ -49,7 +44,7 @@ private:
     void clear();
     void display();
 
-    SSD1306* oled_display;
+    TFT_eSPI* oled_display;
 
     uint8_t tilt_pages_in_run;  // Number of pages in the current loop through the active tilts (# active tilts / 3)
     uint8_t tilt_on_page;       // The page number currently being displayed
@@ -57,9 +52,6 @@ private:
     uint8_t on_screen;
 
     uint64_t next_screen_at;
-
-    bool i2c_device_at_address(byte address, int sda_pin, int scl_pin);
-
 };
 
 extern bridge_lcd lcd;
