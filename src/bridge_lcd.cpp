@@ -88,7 +88,7 @@ void bridge_lcd::display_tilt_screen(uint8_t screen_number) {
     clear();
 
     // Display the header row
-    print_line("Color", "Gravity", 1);
+    print_line("Gravity", "Temp", 1);
 
     // Loop through each of the tilt colors cached by tilt_scanner, searching for active tilts
     for(uint8_t i = 0;i<TILT_COLORS;i++) {
@@ -153,8 +153,10 @@ void bridge_lcd::display_ota_update_screen() {
 
 void bridge_lcd::print_tilt_to_line(tiltHydrometer* tilt, uint8_t line) {
     char gravity[10];
+    char temp[10];
     sprintf(gravity, "%.3f", double_t(tilt->gravity)/1000);
-    print_line(tilt->color_name().c_str(), gravity, line);
+    sprintf(temp, "%.2f", double_t(tilt->temp));
+    print_line(gravity, temp, line);
 }
 
 /////////// LCD Wrapper Functions
