@@ -155,7 +155,25 @@ void bridge_lcd::print_tilt_to_line(tiltHydrometer* tilt, uint8_t line) {
     char temp[10];
     sprintf(gravity, "%.3f", double_t(tilt->gravity)/1000);
     sprintf(temp, "%.2f", double_t(tilt->temp));
+    if (tilt->color_name() == "Red"){
+        oled_display->setTextColor(TFT_RED);
+    } else if (tilt->color_name() == "Green"){
+        oled_display->setTextColor(TFT_GREEN);
+    } else if (tilt->color_name() == "Purple"){
+        oled_display->setTextColor(TFT_PURPLE);
+    } else if (tilt->color_name() == "Orange"){
+        oled_display->setTextColor(TFT_ORANGE);
+    } else if (tilt->color_name() == "Blue"){
+        oled_display->setTextColor(TFT_BLUE);
+    } else if (tilt->color_name() == "Yellow"){
+        oled_display->setTextColor(TFT_YELLOW);
+    } else if (tilt->color_name() == "Pink"){
+        oled_display->setTextColor(TFT_PINK);
+    } else {
+        oled_display->setTextColor(TFT_WHITE);
+    }
     print_line(gravity, temp, line);
+    oled_display->setTextColor(TFT_WHITE);
 }
 
 /////////// LCD Wrapper Functions
